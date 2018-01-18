@@ -21,8 +21,9 @@ public class LocationViewerController: UIViewController {
     
     var backButton: UIBarButtonItem?
     var leftCallOutAction: (() -> Void)? = nil
-    var rightCallOutAction: (() -> Void)? = nil
     var shareAction: ((CLLocation) -> Void)? = nil
+    var titleColor: UIColor?
+    var subtitleColor: UIColor?
     
     public convenience init(location: CLLocation, forName name: String) {
         let bundle = Bundle(for: LocationViewerController.classForCoder())
@@ -31,56 +32,52 @@ public class LocationViewerController: UIViewController {
         self.annotationTitle = name
     }
     
-    lazy var annotation: MKPointAnnotation? = {
+    func annotation() -> MKPointAnnotation? {
         guard let location = self.location else {return nil}
         let annotation = MKPointAnnotation()
         annotation.title = self.annotationTitle
         annotation.coordinate = location.coordinate
         return annotation
-    }()
+    }
     
-    lazy var userAnnotation: MKPointAnnotation? = {
+    func userAnnotation() -> MKPointAnnotation? {
         guard let location = self.userLocation else {return nil}
         let annotation = MKPointAnnotation()
         annotation.title = "My Location"
         annotation.coordinate = location.coordinate
         return annotation
-    }()
+    }
     
-    lazy var userCamera: MKMapCamera? = {
+    func userCamera() -> MKMapCamera? {
         guard let location = self.userLocation else {return nil}
         if #available(iOS 9.0, *) {
             return MKMapCamera(lookingAtCenter: location.coordinate,fromDistance: 1000,pitch: 0,heading: 0)
         } else {
             return MKMapCamera(lookingAtCenter: location.coordinate, fromEyeCoordinate: location.coordinate, eyeAltitude: 1000)
         }
-    }()
+    }
     
-    lazy var camera: MKMapCamera? = {
+    func camera() -> MKMapCamera? {
         guard let location = self.location else {return nil}
         if #available(iOS 9.0, *) {
             return MKMapCamera(lookingAtCenter: location.coordinate,fromDistance: 1000,pitch: 0,heading: 0)
         } else {
             return MKMapCamera(lookingAtCenter: location.coordinate, fromEyeCoordinate: location.coordinate, eyeAltitude: 1000)
         }
-    }()
+    }
     
-    lazy var leftButtonCallOut: UIButton = {
+    func leftButtonCallOut() -> UIButton {
+        let bundle = Bundle(for: LocationViewerController.classForCoder())
+        let image = UIImage(named: "ic-car@3x", in: bundle, compatibleWith: nil)
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        if let image = image {
+            button.imageEdgeInsets.bottom = 5
+            button.imageEdgeInsets.top = -5
+            button.setImage(image, for: .normal)
+        }
         button.backgroundColor = button.tintColor
         button.addTarget(self, action: #selector(executeLeftCallOutAction(_:)), for: .touchUpInside)
         return button
-    }()
-    
-    lazy var rightButtonCallOut: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        button.backgroundColor = button.tintColor
-        button.addTarget(self, action: #selector(executeRightCallOutAction(_:)), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func executeRightCallOutAction(_ sender: Any) {
-        rightCallOutAction?()
     }
     
     @objc func executeLeftCallOutAction(_ sender: Any) {
@@ -103,8 +100,8 @@ public class LocationViewerController: UIViewController {
         guard let location = location, let userLocation = userLocation else {return}
         switch state {
         case 0:
-            if let annotation = annotation { mapView.selectAnnotation(annotation, animated: true) }
-            if let camera = camera { mapView.setCamera(camera, animated: true) }
+            if let annotation = annotation() { mapView.selectAnnotation(annotation, animated: true) }
+            if let camera = camera() { mapView.setCamera(camera, animated: true) }
             break
         case 1:
             let distance = location.distance(from: userLocation)
@@ -113,11 +110,13 @@ public class LocationViewerController: UIViewController {
             let centerCoordinate = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
             let region = MKCoordinateRegionMakeWithDistance(centerCoordinate, 3 * distance, 3 * distance)
             let adjustedRegion = mapView.regionThatFits(region)
+            guard !adjustedRegion.span.latitudeDelta.isNaN else {break}
+            guard !adjustedRegion.span.longitudeDelta.isNaN else {break}
             mapView.setRegion(adjustedRegion, animated: true)
             break
         case 2:
-            if let annotation = userAnnotation { mapView.selectAnnotation(annotation, animated: true) }
-            if let camera = userCamera { mapView.setCamera(camera, animated: true) }
+            if let annotation = userAnnotation() { mapView.selectAnnotation(annotation, animated: true) }
+            if let camera = userCamera() { mapView.setCamera(camera, animated: true) }
             break
         default:
             break
@@ -128,9 +127,9 @@ public class LocationViewerController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         if let backButton = backButton { navigationItem.backBarButtonItem = backButton }
-        if let camera = camera { mapView.setCamera(camera, animated: false) }
-        if let annotation = annotation { self.mapView.addAnnotation(annotation) }
-        if let annotation = annotation { mapView.selectAnnotation(annotation, animated: true) }
+        if let camera = camera() { mapView.setCamera(camera, animated: false) }
+        if let annotation = annotation() { self.mapView.addAnnotation(annotation) }
+        if let annotation = annotation() { mapView.selectAnnotation(annotation, animated: true) }
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -167,14 +166,14 @@ public class LocationViewerController: UIViewController {
         let titleLabel = UILabel(frame: CGRect(x:0, y:-5, width:0, height:0))
         
         titleLabel.backgroundColor = UIColor.clear
-        titleLabel.textColor = UIColor.black
+        titleLabel.textColor = titleColor ?? .black
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.text = title
         titleLabel.sizeToFit()
         
         let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
         subtitleLabel.backgroundColor = UIColor.clear
-        subtitleLabel.textColor = UIColor.darkGray
+        subtitleLabel.textColor = subtitleColor ?? .darkGray
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.text = subtitle
         subtitleLabel.sizeToFit()
@@ -204,10 +203,9 @@ extension LocationViewerController: MKMapViewDelegate {
         if annotation is MKUserLocation {return nil}
         guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin") else {
             let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-            annotationView.animatesDrop = true
             annotationView.canShowCallout = true
-            annotationView.leftCalloutAccessoryView = leftButtonCallOut
-            annotationView.rightCalloutAccessoryView = rightButtonCallOut
+            annotationView.animatesDrop = true
+            annotationView.leftCalloutAccessoryView = leftButtonCallOut()
             return annotationView
         }
         annotationView.annotation = annotation
