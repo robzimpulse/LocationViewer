@@ -9,6 +9,9 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## Screenshot
+![alt text](https://github.com/robzimpulse/LocationViewer/blob/master/Screenshot/Simulator%20Screen%20Shot%20-%20iPhone%205s%20-%202018-01-18%20at%2015.19.31.png?raw=true)
+
 ## Installation
 
 LocationViewer is available through [CocoaPods](http://cocoapods.org). To install

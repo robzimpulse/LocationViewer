@@ -19,12 +19,11 @@ Pod::Spec.new do |s|
 
   s.description      = 'A viewer that imitate how whatsapp presenting location'
 
-  s.homepage         = 'https://github.com/kugelfang.killaruna@gmail.com/LocationViewer'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/robzimpulse/LocationViewer'
+  s.screenshots     = 'https://github.com/robzimpulse/LocationViewer/blob/master/Screenshot/Simulator%20Screen%20Shot%20-%20iPhone%205s%20-%202018-01-18%20at%2015.19.31.png?raw=true'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'kugelfang.killaruna@gmail.com' => 'robzimpulse@icloud.com' }
-  s.source           = { :git => 'https://github.com/kugelfang.killaruna@gmail.com/LocationViewer.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'Robyarta@iCloud' => 'robzimpulse@icloud.com', 'Robyarta@Gmail' => 'kugelfang.killaruna@gmail.com' }
+  s.source           = { :git => 'https://github.com/robzimpulse/LocationViewer.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
@@ -34,7 +33,5 @@ Pod::Spec.new do |s|
     'LocationViewer' => ['LocationViewer/**/*.{png,jpeg,jpg,storyboard,xib}']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
