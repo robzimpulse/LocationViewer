@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import LocationViewer
 
 class ViewController: UIViewController {
 
@@ -18,6 +20,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func location(_ sender: Any) {
+        let location = CLLocation(latitude: -6.2303447, longitude: 106.8240961)
+        let locationController = LocationViewerController(location: location, forName: "My Location")
+        navigationController?.pushViewController(locationController, animated: true)
     }
 
 }

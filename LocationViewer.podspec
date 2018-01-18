@@ -17,26 +17,24 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'A viewer that imitate how whatsapp presenting location'
 
   s.homepage         = 'https://github.com/kugelfang.killaruna@gmail.com/LocationViewer'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'kugelfang.killaruna@gmail.com' => 'roby.kronusasia@gmail.com' }
+  s.author           = { 'kugelfang.killaruna@gmail.com' => 'robzimpulse@icloud.com' }
   s.source           = { :git => 'https://github.com/kugelfang.killaruna@gmail.com/LocationViewer.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'LocationViewer/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'LocationViewer' => ['LocationViewer/Assets/*.png']
-  # }
+
+  s.resource_bundles = {
+    'LocationViewer' => ['LocationViewer/**/*.{png,jpeg,jpg,storyboard,xib}']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -9,8 +9,6 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
-
 ## Installation
 
 LocationViewer is available through [CocoaPods](http://cocoapods.org). To install
@@ -22,7 +20,7 @@ pod 'LocationViewer'
 
 ## Author
 
-kugelfang.killaruna@gmail.com, roby.kronusasia@gmail.com
+kugelfang.killaruna@gmail.com, robzimpulse@icloud.com
 
 ## License
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="4352" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationViewerController" customModule="LocationViewer" customModuleProvider="target">
+            <connections>
+                <outlet property="mapView" destination="yZi-6a-0Ce" id="kgS-2d-Pci"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yZi-6a-0Ce">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="nOX-Zh-fKU"/>
+                    </connections>
+                </mapView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="948-n0-f2n">
+                    <rect key="frame" x="0.0" y="260" width="375" height="44"/>
+                    <items>
+                        <barButtonItem systemItem="action" id="cHQ-Cn-xPA">
+                            <connections>
+                                <action selector="share:" destination="-1" id="P8C-cK-DrF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="djd-kU-fUK"/>
+                        <barButtonItem style="plain" id="Du3-a4-yTn">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="iiR-Q1-c9a">
+                                <rect key="frame" x="92" y="7" width="191" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="Hybrid"/>
+                                    <segment title="Satellite"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changedValue:" destination="-1" eventType="valueChanged" id="rdX-hG-3pQ"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="wTu-kY-uOd"/>
+                        <barButtonItem systemItem="search" id="97d-GY-ybQ">
+                            <connections>
+                                <action selector="search:" destination="-1" id="X9M-7a-Ru1"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yZi-6a-0Ce" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="48y-dj-3jd"/>
+                <constraint firstAttribute="trailing" secondItem="948-n0-f2n" secondAttribute="trailing" id="8Cw-ZB-E5Y"/>
+                <constraint firstItem="948-n0-f2n" firstAttribute="top" secondItem="yZi-6a-0Ce" secondAttribute="bottom" id="94Y-fr-Eva"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yZi-6a-0Ce" secondAttribute="trailing" id="Gco-7i-5bY"/>
+                <constraint firstItem="948-n0-f2n" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ech-Lj-ozA"/>
+                <constraint firstItem="yZi-6a-0Ce" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="oJr-dg-wKP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="948-n0-f2n" secondAttribute="bottom" id="qmp-LW-thq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-25.5" y="355"/>
+        </view>
+    </objects>
+</document>
