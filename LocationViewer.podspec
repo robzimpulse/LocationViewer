@@ -8,16 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LocationViewer'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of LocationViewer.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = 'A viewer that imitate how whatsapp presenting location'
+  s.version          = '0.1.1'
+  s.summary          = 'A viewer that imitate how whatsapp presenting location'
 
   s.homepage         = 'https://github.com/robzimpulse/LocationViewer'
   s.screenshots     = 'https://github.com/robzimpulse/LocationViewer/blob/master/Screenshot/Simulator%20Screen%20Shot%20-%20iPhone%205s%20-%202018-01-18%20at%2015.19.31.png?raw=true'

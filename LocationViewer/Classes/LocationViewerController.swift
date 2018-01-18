@@ -12,12 +12,12 @@ public class LocationViewerController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
-    private var state = 1 { didSet(value) { if value > 1 { state = 0 } } }
-    private var annotationTitle: String?
-    private var userLocation: CLLocation?
-    private var location: CLLocation?
-    private let geoCoder: CLGeocoder = CLGeocoder()
-    private let locationManager = CLLocationManager()
+    var state = 1 { didSet(value) { if value > 1 { state = 0 } } }
+    var annotationTitle: String?
+    var userLocation: CLLocation?
+    var location: CLLocation?
+    let geoCoder: CLGeocoder = CLGeocoder()
+    let locationManager = CLLocationManager()
     
     var backButton: UIBarButtonItem?
     var leftCallOutAction: (() -> Void)? = nil
@@ -31,24 +31,24 @@ public class LocationViewerController: UIViewController {
         self.annotationTitle = name
     }
     
-    private lazy var annotation: MKPointAnnotation? = {
-        guard let location = location else {return nil}
+    lazy var annotation: MKPointAnnotation? = {
+        guard let location = self.location else {return nil}
         let annotation = MKPointAnnotation()
-        annotation.title = annotationTitle
+        annotation.title = self.annotationTitle
         annotation.coordinate = location.coordinate
         return annotation
     }()
     
-    private lazy var userAnnotation: MKPointAnnotation? = {
-        guard let location = userLocation else {return nil}
+    lazy var userAnnotation: MKPointAnnotation? = {
+        guard let location = self.userLocation else {return nil}
         let annotation = MKPointAnnotation()
         annotation.title = "My Location"
         annotation.coordinate = location.coordinate
         return annotation
     }()
     
-    private lazy var userCamera: MKMapCamera? = {
-        guard let location = userLocation else {return nil}
+    lazy var userCamera: MKMapCamera? = {
+        guard let location = self.userLocation else {return nil}
         if #available(iOS 9.0, *) {
             return MKMapCamera(lookingAtCenter: location.coordinate,fromDistance: 1000,pitch: 0,heading: 0)
         } else {
@@ -56,8 +56,8 @@ public class LocationViewerController: UIViewController {
         }
     }()
     
-    private lazy var camera: MKMapCamera? = {
-        guard let location = location else {return nil}
+    lazy var camera: MKMapCamera? = {
+        guard let location = self.location else {return nil}
         if #available(iOS 9.0, *) {
             return MKMapCamera(lookingAtCenter: location.coordinate,fromDistance: 1000,pitch: 0,heading: 0)
         } else {
@@ -65,14 +65,14 @@ public class LocationViewerController: UIViewController {
         }
     }()
     
-    private lazy var leftButtonCallOut: UIButton = {
+    lazy var leftButtonCallOut: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         button.backgroundColor = button.tintColor
         button.addTarget(self, action: #selector(executeLeftCallOutAction(_:)), for: .touchUpInside)
         return button
     }()
     
-    private lazy var rightButtonCallOut: UIButton = {
+    lazy var rightButtonCallOut: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         button.backgroundColor = button.tintColor
         button.addTarget(self, action: #selector(executeRightCallOutAction(_:)), for: .touchUpInside)
