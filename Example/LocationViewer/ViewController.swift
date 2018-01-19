@@ -25,8 +25,26 @@ class ViewController: UIViewController {
     @IBAction func location(_ sender: Any) {
         let location = CLLocation(latitude: -6.2303447, longitude: 106.8240961)
         let locationController = LocationViewerController(location: location, forName: "My Location")
+        locationController.titleColor = UIColor.red
+        locationController.subtitleColor = UIColor.green
+        locationController.leftCallOutAction = {
+            print("left callout")
+        }
+        locationController.shareAction = { location in
+            print(location)
+        }
+        locationController.backButton = UIBarButtonItem(
+            title: "Back",
+            style: .plain,
+            target: self,
+            action: #selector(back(_:))
+        )
         navigationController?.pushViewController(locationController, animated: true)
     }
 
+    @IBAction func back(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 

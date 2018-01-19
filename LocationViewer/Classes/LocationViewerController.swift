@@ -19,17 +19,18 @@ public class LocationViewerController: UIViewController {
     let geoCoder: CLGeocoder = CLGeocoder()
     let locationManager = CLLocationManager()
     
-    var backButton: UIBarButtonItem?
-    var leftCallOutAction: (() -> Void)? = nil
-    var shareAction: ((CLLocation) -> Void)? = nil
-    var titleColor: UIColor?
-    var subtitleColor: UIColor?
+    public var backButton: UIBarButtonItem?
+    public var leftCallOutAction: (() -> Void)? = nil
+    public var shareAction: ((CLLocation) -> Void)? = nil
+    public var titleColor: UIColor?
+    public var subtitleColor: UIColor?
     
     public convenience init(location: CLLocation, forName name: String) {
         let bundle = Bundle(for: LocationViewerController.classForCoder())
         self.init(nibName: "LocationViewerController", bundle: bundle)
         self.location = location
         self.annotationTitle = name
+        print("test")
     }
     
     func annotation() -> MKPointAnnotation? {
@@ -68,9 +69,9 @@ public class LocationViewerController: UIViewController {
     
     func leftButtonCallOut() -> UIButton {
         let bundle = Bundle(for: LocationViewerController.classForCoder())
-        let image = UIImage(named: "ic-car@3x", in: bundle, compatibleWith: nil)
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        if let image = image {
+        print(bundle)
+        if let image = UIImage(named: "ic-car@3x", in: bundle, compatibleWith: nil) {
             button.imageEdgeInsets.bottom = 5
             button.imageEdgeInsets.top = -5
             button.setImage(image, for: .normal)
@@ -126,7 +127,7 @@ public class LocationViewerController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        if let backButton = backButton { navigationItem.backBarButtonItem = backButton }
+        if let backButton = backButton { navigationItem.leftBarButtonItem = backButton }
         if let camera = camera() { mapView.setCamera(camera, animated: false) }
         if let annotation = annotation() { self.mapView.addAnnotation(annotation) }
         if let annotation = annotation() { mapView.selectAnnotation(annotation, animated: true) }
