@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-public class LocationViewerController: UIViewController {
+open class LocationViewerController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -130,7 +130,7 @@ public class LocationViewerController: UIViewController {
         state += 1
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         if let backButton = backButton { navigationItem.leftBarButtonItem = backButton }
         if let camera = camera() { mapView.setCamera(camera, animated: false) }
@@ -150,7 +150,7 @@ public class LocationViewerController: UIViewController {
         })
     }
 
-    override public func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         switch (self.mapView.mapType) {
         case MKMapType.hybrid:
