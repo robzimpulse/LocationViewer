@@ -25,9 +25,15 @@ public class LocationViewerController: UIViewController {
     public var titleColor: UIColor?
     public var subtitleColor: UIColor?
     
+    static func bundle() -> Bundle? {
+        guard let path = Bundle(for: LocationViewerController.classForCoder())
+            .path(forResource: "LocationViewer", ofType: "bundle") else {return nil}
+        return Bundle(path: path)
+    }
+    
     public convenience init(location: CLLocation, forName name: String) {
-        let bundle = Bundle(for: LocationViewerController.classForCoder())
-        self.init(nibName: "LocationViewerController", bundle: bundle)
+        let bundle = LocationViewerController.bundle()
+        self.init(nibName: "LocationViewerController", bundle: bundle!)
         self.location = location
         self.annotationTitle = name
         print("test")
@@ -68,9 +74,8 @@ public class LocationViewerController: UIViewController {
     }
     
     func leftButtonCallOut() -> UIButton {
-        let bundle = Bundle(for: LocationViewerController.classForCoder())
+        let bundle = LocationViewerController.bundle()!
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        print(bundle)
         if let image = UIImage(named: "ic-car@3x", in: bundle, compatibleWith: nil) {
             button.imageEdgeInsets.bottom = 5
             button.imageEdgeInsets.top = -5

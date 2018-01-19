@@ -14,7 +14,6 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8481DCE720109084009DBD3F /* Simulator Screen Shot - iPhone 5s - 2018-01-18 at 15.19.31.png in Resources */ = {isa = PBXBuildFile; fileRef = 8481DCE620109084009DBD3F /* Simulator Screen Shot - iPhone 5s - 2018-01-18 at 15.19.31.png */; };
-		8488A47B201198AE00299B1B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488A47A201198AE00299B1B /* WebViewController.swift */; };
 		EFB92B3B0C2182EA3D72AF74 /* Pods_LocationViewer_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7194B01362D14D49F32E2E7 /* Pods_LocationViewer_Example.framework */; };
 		F52C6E33789E3B839D9DE283 /* Pods_LocationViewer_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213AFE2A53D04C0C9BFB5E20 /* Pods_LocationViewer_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -45,7 +44,6 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		83EB6229DC3D320C71ED5BB4 /* Pods-LocationViewer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationViewer_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationViewer_Example/Pods-LocationViewer_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8481DCE620109084009DBD3F /* Simulator Screen Shot - iPhone 5s - 2018-01-18 at 15.19.31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Simulator Screen Shot - iPhone 5s - 2018-01-18 at 15.19.31.png"; path = "../../Screenshot/Simulator Screen Shot - iPhone 5s - 2018-01-18 at 15.19.31.png"; sourceTree = "<group>"; };
-		8488A47A201198AE00299B1B /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		88225514FC3FC771EA3B2405 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B7194B01362D14D49F32E2E7 /* Pods_LocationViewer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationViewer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A417283622D64B04D431DF /* Pods-LocationViewer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationViewer_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationViewer_Tests/Pods-LocationViewer_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				8488A47A201198AE00299B1B /* WebViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -397,7 +394,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				8488A47B201198AE00299B1B /* WebViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
