@@ -1,6 +1,6 @@
 # LocationViewer
 
-[![CI Status](http://img.shields.io/travis/kugelfang.killaruna@gmail.com/LocationViewer.svg?style=flat)](https://travis-ci.org/kugelfang.killaruna@gmail.com/LocationViewer)
+[![CI Status](http://img.shields.io/travis/robzimpulse/LocationViewer.svg?style=flat)](https://travis-ci.org/robzimpulse/LocationViewer)
 [![Version](https://img.shields.io/cocoapods/v/LocationViewer.svg?style=flat)](http://cocoapods.org/pods/LocationViewer)
 [![License](https://img.shields.io/cocoapods/l/LocationViewer.svg?style=flat)](http://cocoapods.org/pods/LocationViewer)
 [![Platform](https://img.shields.io/cocoapods/p/LocationViewer.svg?style=flat)](http://cocoapods.org/pods/LocationViewer)
