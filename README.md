@@ -21,6 +21,23 @@ it, simply add the following line to your Podfile:
 pod 'LocationViewer'
 ```
 
+## How To Use
+
+```
+import LocationViewer
+```
+
+```
+let location = CLLocation(latitude: -6.2303447, longitude: 106.8240961)
+let locationController = LocationViewerController(location: location, forName: "My Location")
+locationController.titleColor = UIColor.red
+locationController.subtitleColor = UIColor.green
+locationController.leftCallOutAction = { print("left callout") }
+locationController.shareAction = { location in print(location) }
+locationController.backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(back(_:)))
+navigationController?.pushViewController(locationController, animated: true)
+```
+
 ## Author
 
 kugelfang.killaruna@gmail.com, robzimpulse@icloud.com

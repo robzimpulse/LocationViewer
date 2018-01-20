@@ -11,9 +11,9 @@ language: objective-c
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 # - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/LocationViewer.xcworkspace -scheme LocationViewer-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
+# - xcodebuild clean test -workspace Example/LocationViewer.xcworkspace -scheme LocationViewer -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
 script:
 - gem install cocoapods
 - pod install --project-directory=Example
-- xcodebuild clean test -workspace Example/LocationViewer.xcworkspace -scheme LocationViewer -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
 - pod lib lint
 - pod trunk push
