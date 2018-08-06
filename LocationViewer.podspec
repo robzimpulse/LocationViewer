@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LocationViewer'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'A viewer that imitate how whatsapp presenting location'
 
   s.homepage         = 'https://github.com/robzimpulse/LocationViewer'
